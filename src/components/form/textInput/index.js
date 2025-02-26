@@ -1,7 +1,8 @@
 import { useState } from 'react';
 
-const TextInput = ({ value, onChange, pattern, name, label, icon, type = 'text' }) => {
+const TextInput = ({ value, onChange, pattern = '', name, label, icon, type = 'text' }) => {
   const [input, setInput] = useState('');
+  // const [isValidInput, setIsValidInput] = useState(true);
   const [showpassword, setShowpassword] = useState(false);
   if (type === 'password') {
     return (
