@@ -31,6 +31,14 @@ form label {
   padding-right: 10px;
 }
 
+input:invalid ~ .input-error{
+  display: block;
+}
+
+.input-error{
+  display: none;
+}
+
 .showpasswordbutton {
   position: absolute;
   bottom: 28px;

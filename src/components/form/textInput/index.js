@@ -1,14 +1,17 @@
 import { useState } from 'react';
 
-const TextInput = ({ value, onChange, name, label, icon, type = 'text' }) => {
+const TextInput = ({ value, onChange, name, label, icon, pattern, title, type = 'text' }) => {
   const [input, setInput] = useState('');
   const [showpassword, setShowpassword] = useState(false);
+
   if (type === 'password') {
     return (
       <div className="inputwrapper">
         <label htmlFor={name}>{label}</label>
         <input
+          title={title}
           type={type}
+          pattern={pattern.value}
           name={name}
           value={value}
           onChange={(e) => {
@@ -34,12 +37,14 @@ const TextInput = ({ value, onChange, name, label, icon, type = 'text' }) => {
         {label && <label htmlFor={name}>{label}</label>}
         <input
           type={type}
+          pattern={pattern.value}
           name={name}
           value={value}
           onChange={onChange}
           className={icon && 'input-has-icon'}
         />
         {icon && <span className="input-icon">{icon}</span>}
+        <span className="input-error">{pattern.message}</span>
       </div>
     );
   }
