@@ -1,6 +1,15 @@
 import { useState } from 'react';
 
-const TextInput = ({ value, onChange, pattern = '', name, label, icon, type = 'text' }) => {
+const TextInput = ({
+  value,
+  onChange,
+  errorResponse = '',
+  name,
+  label,
+  icon,
+  require = false,
+  type = 'text'
+}) => {
   const [input, setInput] = useState('');
   // const [isValidInput, setIsValidInput] = useState(true);
   const [showpassword, setShowpassword] = useState(false);
@@ -10,12 +19,10 @@ const TextInput = ({ value, onChange, pattern = '', name, label, icon, type = 't
       <div className="inputwrapper">
         <label htmlFor={name}>{label}</label>
         <input
-          title={title}
           type={type}
-          pattern={pattern.value}
           name={name}
           value={value}
-          pattern={pattern.value}
+          required={require}
           onChange={(e) => {
             onChange(e);
             setInput(e.target.value);
@@ -31,6 +38,7 @@ const TextInput = ({ value, onChange, pattern = '', name, label, icon, type = 't
         >
           <EyeLogo />
         </button>
+        {errorResponse && <span className="input-invalid">{errorResponse}</span>}
       </div>
     );
   } else {
@@ -39,14 +47,14 @@ const TextInput = ({ value, onChange, pattern = '', name, label, icon, type = 't
         {label && <label htmlFor={name}>{label}</label>}
         <input
           type={type}
-          pattern={pattern.value}
           name={name}
           value={value}
+          required={require}
           onChange={onChange}
           className={icon && 'input-has-icon'}
         />
         {icon && <span className="input-icon">{icon}</span>}
-        <span className="input-error">{pattern.message}</span>
+        {errorResponse && <span className="input-invalid">{errorResponse}</span>}
       </div>
     );
   }
