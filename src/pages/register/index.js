@@ -9,6 +9,9 @@ const Register = () => {
   const { onRegister } = useAuth();
   const [formData, setFormData] = useState({ email: '', password: '' });
 
+  const Submit = () => {
+    console.log('submit');
+  };
   const onChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
@@ -24,7 +27,7 @@ const Register = () => {
         altButtonText="Log in"
       >
         <div className="register-form">
-          <form>
+          <form onSubmit={Submit}>
             <TextInput
               value={formData.email}
               onChange={onChange}
@@ -38,13 +41,18 @@ const Register = () => {
               name="password"
               label={'Password *'}
               type={'password'}
+              pattern={{
+                value: '^(?=.*[A-Z])(?=.*\\d)(?=.*[!@#$%^&*])[A-Za-z\\d!@#$%^&*]{8,}$',
+                message: 'test'
+              }}
+            />
+            <Button
+              type="submit"
+              text="Sign up"
+              onClick={() => onRegister(formData.email, formData.password)}
+              classes="green width-full"
             />
           </form>
-          <Button
-            text="Sign up"
-            onClick={() => onRegister(formData.email, formData.password)}
-            classes="green width-full"
-          />
         </div>
       </CredentialsCard>
     </div>
