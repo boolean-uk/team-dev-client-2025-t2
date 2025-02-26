@@ -1,16 +1,19 @@
 import { useState } from 'react';
 import Button from '../../components/button';
 import TextInput from '../../components/form/textInput';
-import useAuth from '../../hooks/useAuth';
+// import useAuth from '../../hooks/useAuth';
 import CredentialsCard from '../../components/credentials';
 import './register.css';
 
 const Register = () => {
-  const { onRegister } = useAuth();
+  // const { onRegister } = useAuth();
   const [formData, setFormData] = useState({ email: '', password: '' });
-
-  const Submit = () => {
-    console.log('submit');
+  const onRegister = (email, password) => {
+    console.log('register');
+    console.log(email);
+  };
+  const submit = (e) => {
+    console.log('Submit');
   };
   const onChange = (e) => {
     const { name, value } = e.target;
@@ -27,13 +30,18 @@ const Register = () => {
         altButtonText="Log in"
       >
         <div className="register-form">
-          <form onSubmit={Submit}>
+          <form onSubmit={submit}>
             <TextInput
+              title="Random"
               value={formData.email}
-              onChange={onChange}
+              onChange={(e) => onChange(e)}
               type="email"
               name="email"
               label={'Email *'}
+              pattern={{
+                value: '^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+.[a-zA-Z]{2,}$',
+                message: 'Email in wrong format'
+              }}
             />
             <TextInput
               value={formData.password}

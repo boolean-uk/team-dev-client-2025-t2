@@ -4,12 +4,15 @@ const TextInput = ({ value, onChange, pattern = '', name, label, icon, type = 't
   const [input, setInput] = useState('');
   // const [isValidInput, setIsValidInput] = useState(true);
   const [showpassword, setShowpassword] = useState(false);
+
   if (type === 'password') {
     return (
       <div className="inputwrapper">
         <label htmlFor={name}>{label}</label>
         <input
+          title={title}
           type={type}
+          pattern={pattern.value}
           name={name}
           value={value}
           pattern={pattern.value}
@@ -36,12 +39,14 @@ const TextInput = ({ value, onChange, pattern = '', name, label, icon, type = 't
         {label && <label htmlFor={name}>{label}</label>}
         <input
           type={type}
+          pattern={pattern.value}
           name={name}
           value={value}
           onChange={onChange}
           className={icon && 'input-has-icon'}
         />
         {icon && <span className="input-icon">{icon}</span>}
+        <span className="input-error">{pattern.message}</span>
       </div>
     );
   }
