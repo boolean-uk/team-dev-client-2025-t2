@@ -24,7 +24,7 @@ const ViewProfile = () => {
     };
 
     fetchUser();
-    getId() === id ? setCanEdit(true) : setCanEdit(false);
+    getId() === Number(id) ? setCanEdit(true) : setCanEdit(false);
   }, [id]);
 
   const goToEdit = () => {

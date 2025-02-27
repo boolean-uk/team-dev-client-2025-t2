@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import Button from '../button';
 
-export const ProfileButton = (isInEditMode, canEdit, onClick, pageId) => {
+export const ProfileButton = ({ isInEditMode, canEdit, onClick, pageId }) => {
   const navigate = useNavigate();
   const onCancel = (e) => {
     e.preventDefault();
