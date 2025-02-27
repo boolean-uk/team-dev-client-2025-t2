@@ -15,15 +15,7 @@ const Welcome = () => {
     firstName: '',
     lastName: '',
     githubUsername: '',
-    bio: '',
-    email: '',
-    mobile: '',
-    password: '',
-    role: '',
-    cohortId: '',
-    specialism: '',
-    startDate: '',
-    endDate: ''
+    bio: ''
   });
 
   const onChange = (event) => {
@@ -52,7 +44,6 @@ const Welcome = () => {
         <p className="text-blue1">Create your profile to get started</p>
       </div>
 
-<<<<<<< HEAD
       <Stepper
         header={<WelcomeHeader />}
         onComplete={onComplete}
@@ -71,13 +62,8 @@ const Welcome = () => {
           setInputIsValid={setInputIsValid}
           setData={onChange}
         />
-=======
-      <Stepper header={<WelcomeHeader />} onComplete={onComplete}>
-        <StepOne data={profile} setData={onChange} />
-        <StepTwo data={profile} setData={onChange} />
-        <StepThree data={profile} setData={onChange} />
-        <StepFour data={profile} setData={onChange} />
->>>>>>> main
+        <StepThree data={profile} setData={onChange} setInputIsValid={setInputIsValid} />
+        <StepFour data={profile} setData={onChange} setInputIsValid={setInputIsValid} />
       </Stepper>
     </main>
   );
