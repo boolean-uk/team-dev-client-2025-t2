@@ -8,7 +8,7 @@ const StepTwo = ({ data, setData }) => {
       </div>
       <Form className="welcome-form">
         <div className="welcome-form-inputs">
-          <textarea name="bio" value={data.bio} onChange={setData}></textarea>
+          <textarea required name="bio" value={data.bio} onChange={setData}></textarea>
           <p className="text-blue1">*Required</p>
         </div>
       </Form>

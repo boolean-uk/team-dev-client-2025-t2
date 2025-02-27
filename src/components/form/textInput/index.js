@@ -13,7 +13,8 @@ const TextInput = ({
   const [input, setInput] = useState('');
   // const [isValidInput, setIsValidInput] = useState(true);
   const [showpassword, setShowpassword] = useState(false);
-
+  // form is valid if has a text value or field is optional
+  // const [isValid, setIsValid] = useState(!!value || !require);
   if (type === 'password') {
     return (
       <div className="inputwrapper">
