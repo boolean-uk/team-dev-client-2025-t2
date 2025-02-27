@@ -22,7 +22,7 @@ const Navigation = () => {
           </NavLink>
         </li>
         <li>
-          <NavLink to="/">
+          <NavLink to="/edit">
             <ProfileIcon />
             <p>Profile</p>
           </NavLink>
