@@ -5,14 +5,14 @@ export const ProfileButton = (isInEditMode, canEdit, onClick, pageId) => {
   const navigate = useNavigate();
   const onCancel = (e) => {
     e.preventDefault();
-    navigate(`/route/${pageId}`);
+    navigate(`/profile/${pageId}`);
   };
 
   return (
     <div>
       {isInEditMode && (
         <div className="button-container">
-          <Button text="Save" onClick={(e) => onClick()} className="" />
+          <Button text="Save" onClick={(e) => onClick} className="" />
           <Button text="Cancel" onClick={(e) => onCancel(e)} className="" />
         </div>
       )}
@@ -21,7 +21,7 @@ export const ProfileButton = (isInEditMode, canEdit, onClick, pageId) => {
         <div>
           <Button
             text="Edit"
-            onClick={(e) => onClick()}
+            onClick={(e) => onClick}
             className="profile-button"
             disabled={canEdit}
           />

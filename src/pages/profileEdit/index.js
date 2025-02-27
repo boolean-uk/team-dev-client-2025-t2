@@ -1,7 +1,9 @@
 import { createContext, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { getUser } from '../../service/apiClient';
+import { ProfileButton } from '../../components/profileButton';
 import Profile from '../../components/profile';
+import { getId } from '../../service/tokenService';
 
 export const UserContext = createContext();
 
@@ -9,6 +11,7 @@ const EditProfile = () => {
   const { id } = useParams();
   const [user, setUser] = useState(null);
   const [updatedUser, setUpdatedUser] = useState({});
+  const [canEdit, setCanEdit] = useState(false);
 
   useEffect(() => {
     const fetchUser = async () => {
@@ -21,6 +24,7 @@ const EditProfile = () => {
     };
 
     fetchUser();
+    getId() === id ? setCanEdit(true) : setCanEdit(false);
   }, [id]);
 
   const submit = async (e) => {
@@ -44,7 +48,7 @@ const EditProfile = () => {
   return (
     <UserContext.Provider value={{ user, updatedUser, onChange, submit }}>
       <Profile readOnly={false} UserContext={UserContext} />
-      <button onClick={submit}>Submit</button>
+      <ProfileButton isInEditMode={true} canEdit={canEdit} onClick={submit} pageId={id} />
     </UserContext.Provider>
   );
 };
