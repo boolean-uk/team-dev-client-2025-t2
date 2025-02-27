@@ -1,54 +1,24 @@
 import './profile.css';
-import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
-import { getUser, updateUser } from '../../service/apiClient';
-import Form from '../../components/form';
-import TextInput from '../../components/form/textInput';
+import { useContext } from 'react';
+import Form from '../form';
+import TextInput from '../form/textInput';
 
-const Profile = ({ readOnly }) => {
-  const { id } = useParams();
-  const [user, setUser] = useState(null);
-  const [updatedUser, setUpdatedUser] = useState({});
+const Profile = ({ readOnly, UserContext }) => {
+  if (!UserContext) {
+    throw new Error('UserContext is required');
+  }
+
+  const context = useContext(UserContext);
+  const { user, updatedUser, onChange, submit } = context;
   const initials = user ? `${user.firstName[0]}${user.lastName[0]}` : '';
-
-  useEffect(() => {
-    const fetchUser = async () => {
-      try {
-        const response = await getUser(id);
-        setUser(response.data.user);
-      } catch (error) {
-        console.error('Error fetching user:', error);
-      }
-    };
-
-    fetchUser();
-  }, [id]);
 
   if (!user) {
     return <div>Loading...</div>;
   }
 
-  const submit = async (e) => {
-    e.preventDefault();
-    try {
-      await updateUser(id, updatedUser);
-      console.log('User updated successfully');
-    } catch (error) {
-      console.error('Error updating user:', error);
-    }
-  };
-
-  const onChange = (e) => {
-    const { name, value } = e.target;
-    setUpdatedUser((prevUpdatedUser) => ({
-      ...prevUpdatedUser,
-      [name]: value
-    }));
-  };
-
   return (
     <div className="profile-container">
-      <h1>Profile</h1>
+      <h1>{readOnly ? 'View Profile' : 'Edit Profile'}</h1>
       <div className="profile-edit-section">
         <div className="profile-header">
           <div className="profile-icon">
@@ -69,28 +39,32 @@ const Profile = ({ readOnly }) => {
                   <p>{initials}</p>
                 </div>
                 <TextInput
-                  value={updatedUser.firstName || user.firstName}
+                  value={updatedUser ? updatedUser.firstName || user.firstName : user.firstName}
                   onChange={onChange}
                   name="firstName"
                   label="First Name"
                   readOnly={readOnly}
                 />
                 <TextInput
-                  value={updatedUser.lastName || user.lastName}
+                  value={updatedUser ? updatedUser.lastName || user.lastName : user.lastName}
                   onChange={onChange}
                   name="lastName"
                   label="Last Name"
                   readOnly={readOnly}
                 />
                 <TextInput
-                  value={updatedUser.username || user.email.split('@')[0]}
+                  value={
+                    updatedUser
+                      ? updatedUser.username || user.email.split('@')[0]
+                      : user.email.split('@')[0]
+                  }
                   onChange={onChange}
                   name="username"
                   label="Username"
                   readOnly={readOnly}
                 />
                 <TextInput
-                  value={updatedUser.githubUrl || user.githubUrl}
+                  value={updatedUser ? updatedUser.githubUrl || user.githubUrl : user.githubUrl}
                   onChange={onChange}
                   name="githubUrl"
                   label="GitHub Username"
@@ -100,21 +74,21 @@ const Profile = ({ readOnly }) => {
               <section>
                 <h3>Contact Info</h3>
                 <TextInput
-                  value={updatedUser.email || user.email}
+                  value={updatedUser ? updatedUser.email || user.email : user.email}
                   onChange={onChange}
                   name="email"
                   label="Email"
                   readOnly={readOnly}
                 />
                 <TextInput
-                  value={updatedUser.mobile || 'N/A'}
+                  value={updatedUser ? updatedUser.mobile || 'N/A' : 'N/A'}
                   onChange={onChange}
                   name="mobile"
                   label="Mobile"
                   readOnly={readOnly}
                 />
                 <TextInput
-                  value={updatedUser.password || '********'}
+                  value={updatedUser ? updatedUser.password || '********' : '********'}
                   onChange={onChange}
                   name="password"
                   label="Password"
@@ -124,7 +98,11 @@ const Profile = ({ readOnly }) => {
               <section>
                 <h3>Bio</h3>
                 <TextInput
-                  value={updatedUser.biography || user.biography || ''}
+                  value={
+                    updatedUser
+                      ? updatedUser.biography || user.biography || ''
+                      : user.biography || ''
+                  }
                   onChange={onChange}
                   name="biography"
                   label="Biography"
@@ -134,14 +112,14 @@ const Profile = ({ readOnly }) => {
               <section>
                 <h3>{user.role === 'STUDENT' ? 'Training Info' : 'Professional Info'}</h3>
                 <TextInput
-                  value={updatedUser.role || user.role}
+                  value={updatedUser ? updatedUser.role || user.role : user.role}
                   onChange={onChange}
                   name="role"
                   label="Role"
                   readOnly={readOnly}
                 />
                 <TextInput
-                  value={updatedUser.specialism || 'N/A'}
+                  value={updatedUser ? updatedUser.specialism || 'N/A' : 'N/A'}
                   onChange={onChange}
                   name="specialism"
                   label="Specialism"
@@ -150,14 +128,14 @@ const Profile = ({ readOnly }) => {
                 {user.role === 'STUDENT' ? (
                   <>
                     <TextInput
-                      value={updatedUser.cohortStartDate || 'N/A'}
+                      value={updatedUser ? updatedUser.cohortStartDate || 'N/A' : 'N/A'}
                       onChange={onChange}
                       name="cohortStartDate"
                       label="Cohort Start Date"
                       readOnly={readOnly}
                     />
                     <TextInput
-                      value={updatedUser.cohortEndDate || 'N/A'}
+                      value={updatedUser ? updatedUser.cohortEndDate || 'N/A' : 'N/A'}
                       onChange={onChange}
                       name="cohortEndDate"
                       label="Cohort End Date"
@@ -166,7 +144,7 @@ const Profile = ({ readOnly }) => {
                   </>
                 ) : (
                   <TextInput
-                    value={updatedUser.jobTitle || 'N/A'}
+                    value={updatedUser ? updatedUser.jobTitle || 'N/A' : 'N/A'}
                     onChange={onChange}
                     name="jobTitle"
                     label="Job Title"
