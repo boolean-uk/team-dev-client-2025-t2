@@ -8,8 +8,8 @@ import Verification from './pages/verification';
 import { AuthProvider, ProtectedRoute } from './context/auth';
 import { ModalProvider } from './context/modal';
 import Welcome from './pages/welcome';
-import Profile from './pages/profile';
-
+import ViewProfile from './pages/profileView';
+import EditProfile from './pages/profileEdit';
 const App = () => {
   return (
     <>
@@ -33,7 +33,16 @@ const App = () => {
               path="profile/:id"
               element={
                 <ProtectedRoute>
-                  <Profile readOnly={true} />
+                  <ViewProfile></ViewProfile>
+                </ProtectedRoute>
+              }
+            />
+
+            <Route
+              path="profile/:id/edit"
+              element={
+                <ProtectedRoute>
+                  <EditProfile></EditProfile>
                 </ProtectedRoute>
               }
             />

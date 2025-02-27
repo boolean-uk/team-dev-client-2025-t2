@@ -12,7 +12,6 @@ const TextInput = ({
   readOnly = false
 }) => {
   const [input, setInput] = useState('');
-  // const [isValidInput, setIsValidInput] = useState(true);
   const [showpassword, setShowpassword] = useState(false);
 
   if (type === 'password') {
@@ -30,7 +29,15 @@ const TextInput = ({
             setInput(e.target.value);
           }}
         />
-        {showpassword && <input type="text" name={name} value={input} className="passwordreveal" />}
+        {showpassword && (
+          <input
+            type="text"
+            name={name}
+            value={input}
+            className="passwordreveal"
+            readOnly={readOnly}
+          />
+        )}
         <button
           className={`showpasswordbutton formbutton ${showpassword === true && '__faded'}`}
           onClick={(e) => {
@@ -52,6 +59,7 @@ const TextInput = ({
           name={name}
           value={value}
           required={require}
+          readOnly={readOnly}
           onChange={onChange}
           className={icon && 'input-has-icon'}
         />
