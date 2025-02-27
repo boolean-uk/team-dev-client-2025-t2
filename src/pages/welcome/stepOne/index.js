@@ -47,7 +47,7 @@ const StepOne = ({ data, setData, inputIsValid, setInputIsValid }) => {
             onChange={setData}
             value={data.firstName}
             name="firstName"
-            label={'First name'}
+            label={'First name*'}
             errorResponse={firstNameResponse}
           />
           <TextInput
@@ -55,7 +55,7 @@ const StepOne = ({ data, setData, inputIsValid, setInputIsValid }) => {
             onChange={setData}
             value={data.lastName}
             name="lastName"
-            label={'Last name'}
+            label={'Last name*'}
             errorResponse={lastNameResponse}
           />
           <TextInput
