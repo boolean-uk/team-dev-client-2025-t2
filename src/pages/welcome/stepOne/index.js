@@ -3,11 +3,22 @@ import ProfileIcon from '../../../assets/icons/profileIcon';
 import Form from '../../../components/form';
 import TextInput from '../../../components/form/textInput';
 import { validFirstName, validLastName } from '../../../service/inputValidationService';
+import useModal from '../../../hooks/useModal';
+import UploadPhotoModal from '../../../components/uploadPhotoModal';
 
 const StepOne = ({ data, setData, inputIsValid, setInputIsValid }) => {
   const [firstNameResponse, setFirstNameResponse] = useState('');
   const [lastNameResponse, setLastNameResponse] = useState('');
+  const { openModal, setModal } = useModal();
 
+  // Create a function to run on user interaction
+  const showModal = () => {
+    // Use setModal to set the header of the modal and the component the modal should render
+    setModal('Upload photo', <UploadPhotoModal />); // CreatePostModal is just a standard React component, nothing special
+
+    // Open the modal!
+    openModal();
+  };
   useEffect(() => {
     if (data.firstName !== '' && data.lastName !== '') {
       setInputIsValid(true);
@@ -37,7 +48,9 @@ const StepOne = ({ data, setData, inputIsValid, setInputIsValid }) => {
           <p className="text-blue1">Photo</p>
           <div className="welcome-form-profileimg-input">
             <ProfileIcon colour="#28C846" background="#64DC78" />
-            <p className="text-blue1">Add headshot</p>
+            <p onClick={showModal} className="text-blue1">
+              Add headshot
+            </p>
           </div>
           <p className="welcome-form-profileimg-error">Please upload a valid image file</p>
         </div>
