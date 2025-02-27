@@ -54,7 +54,7 @@ const Register = () => {
               require={true}
               value={formData.email}
               onChange={(e) => onChange(e)}
-              type="email"
+              type="text"
               name="email"
               label={'Email *'}
               errorResponse={emailResponse}
