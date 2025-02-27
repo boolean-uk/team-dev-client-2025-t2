@@ -15,7 +15,15 @@ const Welcome = () => {
     firstName: '',
     lastName: '',
     githubUsername: '',
-    bio: ''
+    bio: '',
+    email: '',
+    mobile: '',
+    password: '',
+    role: '',
+    cohortId: '',
+    specialism: '',
+    startDate: '',
+    endDate: ''
   });
 
   const onChange = (event) => {
