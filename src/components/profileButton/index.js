@@ -13,7 +13,7 @@ export const ProfileButton = (isInEditMode, canEdit, onClick, pageId) => {
       {isInEditMode && (
         <div className="button-container">
           <Button text="Save" onClick={(e) => onClick} className="" />
-          <Button text="Cancel" onClick={(e) => onCancel(e)} className="" />
+          <Button text="Cancel" onClick={(e) => onCancel} className="" />
         </div>
       )}
 
