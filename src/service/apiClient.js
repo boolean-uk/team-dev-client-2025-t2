@@ -18,6 +18,10 @@ async function getPosts() {
   return res.data.posts;
 }
 
+async function getUser(id) {
+  return await get(`users/${id}`);
+}
+
 async function post(endpoint, data, auth = true) {
   return await request('POST', endpoint, data, auth);
 }
@@ -52,4 +56,4 @@ async function request(method, endpoint, data, auth = true) {
   return response.json();
 }
 
-export { login, getPosts, register, createProfile };
+export { login, getPosts, register, createProfile, getUser };

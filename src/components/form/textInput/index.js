@@ -8,7 +8,8 @@ const TextInput = ({
   label,
   icon,
   require = false,
-  type = 'text'
+  type = 'text',
+  readOnly = false
 }) => {
   const [input, setInput] = useState('');
   // const [isValidInput, setIsValidInput] = useState(true);
@@ -23,6 +24,7 @@ const TextInput = ({
           name={name}
           value={value}
           required={require}
+          readOnly={readOnly}
           onChange={(e) => {
             onChange(e);
             setInput(e.target.value);
