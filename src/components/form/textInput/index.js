@@ -1,8 +1,19 @@
 import { useState } from 'react';
 
-const TextInput = ({ value, onChange, name, label, icon, type = 'text' }) => {
+const TextInput = ({
+  value,
+  onChange,
+  errorResponse = '',
+  name,
+  label,
+  icon,
+  require = false,
+  type = 'text'
+}) => {
   const [input, setInput] = useState('');
+  // const [isValidInput, setIsValidInput] = useState(true);
   const [showpassword, setShowpassword] = useState(false);
+
   if (type === 'password') {
     return (
       <div className="inputwrapper">
@@ -11,6 +22,7 @@ const TextInput = ({ value, onChange, name, label, icon, type = 'text' }) => {
           type={type}
           name={name}
           value={value}
+          required={require}
           onChange={(e) => {
             onChange(e);
             setInput(e.target.value);
@@ -26,6 +38,7 @@ const TextInput = ({ value, onChange, name, label, icon, type = 'text' }) => {
         >
           <EyeLogo />
         </button>
+        {errorResponse && <span className="input-invalid">{errorResponse}</span>}
       </div>
     );
   } else {
@@ -36,10 +49,12 @@ const TextInput = ({ value, onChange, name, label, icon, type = 'text' }) => {
           type={type}
           name={name}
           value={value}
+          required={require}
           onChange={onChange}
           className={icon && 'input-has-icon'}
         />
         {icon && <span className="input-icon">{icon}</span>}
+        {errorResponse && <span className="input-invalid">{errorResponse}</span>}
       </div>
     );
   }

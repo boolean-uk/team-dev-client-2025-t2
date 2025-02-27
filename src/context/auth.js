@@ -29,13 +29,15 @@ const AuthProvider = ({ children }) => {
     const res = await login(email, password);
 
     if (!res.data.token) {
-      return navigate('/login');
+      navigate('/login');
+      return res;
     }
 
     localStorage.setItem('token', res.data.token);
 
     setToken(res.token);
     navigate(location.state?.from?.pathname || '/');
+    return res;
   };
 
   const handleLogout = () => {
@@ -45,9 +47,13 @@ const AuthProvider = ({ children }) => {
 
   const handleRegister = async (email, password) => {
     const res = await register(email, password);
-    setToken(res.data.token);
+    if (res.status === 'success') {
+      const loginRes = await login(email, password);
+      setToken(loginRes.data.token);
+      navigate('/verification');
+    }
 
-    navigate('/verification');
+    return res;
   };
 
   const handleCreateProfile = async (firstName, lastName, githubUrl, bio) => {

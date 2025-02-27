@@ -8,10 +8,20 @@ import './login.css';
 const Login = () => {
   const { onLogin } = useAuth();
   const [formData, setFormData] = useState({ email: '', password: '' });
+  const [response, setResponse] = useState('');
 
   const onChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
+  };
+
+  const submit = async (e) => {
+    e.preventDefault();
+    const data = await onLogin(formData.email, formData.password);
+    if (data.status === 'fail') {
+      setResponse(data.data.email);
+      console.log(data.data.email);
+    }
   };
 
   return (
@@ -24,7 +34,7 @@ const Login = () => {
         altButtonText="Sign up"
       >
         <div className="login-form">
-          <form>
+          <form onSubmit={submit}>
             <TextInput value={formData.email} onChange={onChange} name="email" label={'Email *'} />
             <TextInput
               value={formData.password}
@@ -32,13 +42,11 @@ const Login = () => {
               name="password"
               label={'Password *'}
               type={'password'}
+              errorResponse={response}
             />
+
+            <Button type="submit" text="Log in" classes="green width-full" />
           </form>
-          <Button
-            text="Log in"
-            onClick={() => onLogin(formData.email, formData.password)}
-            classes="green width-full"
-          />
         </div>
       </CredentialsCard>
     </div>

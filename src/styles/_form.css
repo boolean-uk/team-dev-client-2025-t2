@@ -31,6 +31,14 @@ form label {
   padding-right: 10px;
 }
 
+.input-description{
+  color: var(--color-blue2);
+}
+
+.input-invalid {
+  color: var(--color-red)
+}
+
 .showpasswordbutton {
   position: absolute;
   bottom: 28px;
