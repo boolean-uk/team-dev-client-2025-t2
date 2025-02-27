@@ -36,8 +36,7 @@ const Stepper = ({ header, children, onComplete, inputIsValid, setInputIsValid }
       <div className="stepper-buttons">
         <Button text="Back" classes="offwhite" onClick={onBackClick} />
         <Button
-          type="submit"
-          text={currentStep === children.length - 1 ? 'Submit' : 'Next'}
+          text={currentStep === children.length - 1 ? 'Create Profile' : 'Next'}
           classes="blue"
           onClick={onNextClick}
         />

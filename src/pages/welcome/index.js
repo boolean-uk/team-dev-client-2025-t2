@@ -4,6 +4,8 @@ import Stepper from '../../components/stepper';
 import useAuth from '../../hooks/useAuth';
 import StepOne from './stepOne';
 import StepTwo from './stepTwo';
+import StepThree from './stepThree';
+import StepFour from './stepFour';
 import './style.css';
 
 const Welcome = () => {
@@ -13,7 +15,15 @@ const Welcome = () => {
     firstName: '',
     lastName: '',
     githubUsername: '',
-    bio: ''
+    bio: '',
+    email: '',
+    mobile: '',
+    password: '',
+    role: '',
+    cohortId: '',
+    specialism: '',
+    startDate: '',
+    endDate: ''
   });
 
   const onChange = (event) => {
@@ -42,6 +52,7 @@ const Welcome = () => {
         <p className="text-blue1">Create your profile to get started</p>
       </div>
 
+<<<<<<< HEAD
       <Stepper
         header={<WelcomeHeader />}
         onComplete={onComplete}
@@ -60,6 +71,13 @@ const Welcome = () => {
           setInputIsValid={setInputIsValid}
           setData={onChange}
         />
+=======
+      <Stepper header={<WelcomeHeader />} onComplete={onComplete}>
+        <StepOne data={profile} setData={onChange} />
+        <StepTwo data={profile} setData={onChange} />
+        <StepThree data={profile} setData={onChange} />
+        <StepFour data={profile} setData={onChange} />
+>>>>>>> main
       </Stepper>
     </main>
   );
