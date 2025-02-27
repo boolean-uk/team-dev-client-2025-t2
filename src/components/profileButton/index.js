@@ -10,20 +10,18 @@ export const ProfileButton = (isInEditMode, canEdit, onClick, pageId) => {
 
   return (
     <div>
-      {isInEditMode && (
+      {isInEditMode ? (
         <div className="button-container">
-          <Button text="Save" onClick={(e) => onClick} className="" />
-          <Button text="Cancel" onClick={(e) => onCancel} className="" />
+          <Button text="Save" onClick={onClick} className="" />
+          <Button text="Cancel" onClick={onCancel} className="" />
         </div>
-      )}
-
-      {!isInEditMode && (
+      ) : (
         <div>
           <Button
             text="Edit"
-            onClick={(e) => onClick}
+            onClick={onClick}
             className="profile-button"
-            disabled={canEdit}
+            disabled={!canEdit} // Assuming canEdit should enable the button when true
           />
         </div>
       )}
