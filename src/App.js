@@ -33,7 +33,7 @@ const App = () => {
               path="profile/:id"
               element={
                 <ProtectedRoute>
-                  <Profile readOnly={false} />
+                  <Profile readOnly={true} />
                 </ProtectedRoute>
               }
             />
