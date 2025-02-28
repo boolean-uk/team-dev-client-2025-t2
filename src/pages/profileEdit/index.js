@@ -45,10 +45,7 @@ const EditProfile = () => {
   const submit = async (e) => {
     e.preventDefault();
     const validInput = validateUpdateUser(updatedUser);
-    if (!validInput.isValid) {
-      return;
-    }
-    if (Object.keys(updatedUser).length > 0) {
+    if (Object.keys(updatedUser).length > 0 && validInput.isValid) {
       try {
         await updateUser(id, updatedUser);
         console.log(updatedUser);
@@ -56,6 +53,7 @@ const EditProfile = () => {
         console.error('Error updating user:', error);
       }
     }
+    navigate(`/profile/${id}`);
   };
   const onChange = (e) => {
     const { name, value } = e.target;

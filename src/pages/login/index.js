@@ -18,6 +18,7 @@ const Login = () => {
   const submit = async (e) => {
     e.preventDefault();
     const data = await onLogin(formData.email, formData.password);
+    console.log(data);
     if (data.status === 'fail') {
       setResponse(data.data.email);
       console.log(data.data.email);
@@ -34,7 +35,7 @@ const Login = () => {
         altButtonText="Sign up"
       >
         <div className="login-form">
-          <form onSubmit={submit}>
+          <form onSubmit={(e) => submit(e)}>
             <TextInput value={formData.email} onChange={onChange} name="email" label={'Email *'} />
             <TextInput
               value={formData.password}
