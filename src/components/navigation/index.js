@@ -4,6 +4,7 @@ import HomeIcon from '../../assets/icons/homeIcon';
 import ProfileIcon from '../../assets/icons/profileIcon';
 import useAuth from '../../hooks/useAuth';
 import './style.css';
+import { getId } from '../../service/tokenService';
 
 const Navigation = () => {
   const { token } = useAuth();
@@ -22,7 +23,7 @@ const Navigation = () => {
           </NavLink>
         </li>
         <li>
-          <NavLink to="/">
+          <NavLink to={`/profile/${getId()}`}>
             <ProfileIcon />
             <p>Profile</p>
           </NavLink>
