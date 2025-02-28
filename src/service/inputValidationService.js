@@ -125,3 +125,20 @@ export const validateUpdateUser = (toUpdate) => {
     message: ''
   };
 };
+
+export const validFirstName = (firstName) => {
+  if (firstName.length < 1) {
+    return {
+      isValid: false,
+      message: 'First name is required'
+    };
+  }
+};
+export const validLastName = (lastName) => {
+  if (lastName.length < 1) {
+    return {
+      isValid: false,
+      message: 'last name is required'
+    };
+  }
+};
