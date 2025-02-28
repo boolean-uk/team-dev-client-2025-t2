@@ -71,44 +71,7 @@ const Profile = ({ readOnly, UserContext }) => {
                   readOnly={readOnly}
                 />
               </section>
-              <section>
-                <h3>Contact Info</h3>
-                <TextInput
-                  value={updatedUser ? updatedUser.email || user.email : user.email}
-                  onChange={onChange}
-                  name="email"
-                  label="Email"
-                  readOnly={readOnly}
-                />
-                <TextInput
-                  value={updatedUser ? updatedUser.mobile || 'N/A' : 'N/A'}
-                  onChange={onChange}
-                  name="mobile"
-                  label="Mobile"
-                  readOnly={readOnly}
-                />
-                <TextInput
-                  value={updatedUser ? updatedUser.password || '********' : '********'}
-                  onChange={onChange}
-                  name="password"
-                  label="Password"
-                  readOnly={readOnly}
-                />
-              </section>
-              <section>
-                <h3>Bio</h3>
-                <TextInput
-                  value={
-                    updatedUser
-                      ? updatedUser.biography || user.biography || ''
-                      : user.biography || ''
-                  }
-                  onChange={onChange}
-                  name="biography"
-                  label="Biography"
-                  readOnly={readOnly}
-                />
-              </section>
+
               <section>
                 <h3>{user.role === 'STUDENT' ? 'Training Info' : 'Professional Info'}</h3>
                 <TextInput
@@ -151,6 +114,44 @@ const Profile = ({ readOnly, UserContext }) => {
                     readOnly={readOnly}
                   />
                 )}
+              </section>
+              <section>
+                <h3>Contact Info</h3>
+                <TextInput
+                  value={updatedUser ? updatedUser.email || user.email : user.email}
+                  onChange={onChange}
+                  name="email"
+                  label="Email"
+                  readOnly={readOnly}
+                />
+                <TextInput
+                  value={updatedUser ? updatedUser.mobile || 'N/A' : 'N/A'}
+                  onChange={onChange}
+                  name="mobile"
+                  label="Mobile"
+                  readOnly={readOnly}
+                />
+                <TextInput
+                  value={updatedUser ? updatedUser.password || '********' : '********'}
+                  onChange={onChange}
+                  name="password"
+                  label="Password"
+                  readOnly={readOnly}
+                />
+              </section>
+              <section>
+                <h3>Bio</h3>
+                <textarea
+                  value={
+                    updatedUser
+                      ? updatedUser.biography || user.biography || ''
+                      : user.biography || ''
+                  }
+                  onChange={onChange}
+                  name="biography"
+                  label="Biography"
+                  readOnly={readOnly}
+                />
               </section>
             </Form>
           </section>

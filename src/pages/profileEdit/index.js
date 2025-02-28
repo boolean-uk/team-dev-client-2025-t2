@@ -47,8 +47,12 @@ const EditProfile = () => {
 
   return (
     <UserContext.Provider value={{ user, updatedUser, onChange, submit }}>
-      <Profile readOnly={false} UserContext={UserContext} />
-      <ProfileButton isInEditMode={true} canEdit={canEdit} onClick={submit} pageId={id} />
+      <div className="profile-button-group">
+        <Profile readOnly={false} UserContext={UserContext} />
+        <section>
+          <ProfileButton isInEditMode={true} canEdit={canEdit} onClick={submit} pageId={id} />
+        </section>
+      </div>
     </UserContext.Provider>
   );
 };

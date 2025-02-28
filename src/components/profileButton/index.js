@@ -1,5 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import Button from '../button';
+import './styling.css';
 
 export const ProfileButton = ({ isInEditMode, canEdit, onClick, pageId }) => {
   const navigate = useNavigate();
@@ -12,8 +13,8 @@ export const ProfileButton = ({ isInEditMode, canEdit, onClick, pageId }) => {
     <div>
       {isInEditMode ? (
         <div className="button-container">
+          <Button text="Cancel" onClick={onCancel} className="button-button" />
           <Button text="Save" onClick={onClick} className="" />
-          <Button text="Cancel" onClick={onCancel} className="" />
         </div>
       ) : (
         <div>

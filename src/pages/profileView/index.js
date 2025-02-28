@@ -33,8 +33,12 @@ const ViewProfile = () => {
 
   return (
     <ViewUserContext.Provider value={{ user }}>
-      <Profile readOnly={true} UserContext={ViewUserContext} />
-      <ProfileButton isInEditMode={false} canEdit={canEdit} onClick={goToEdit} pageId={id} />
+      <div className="profile-button-group">
+        <Profile readOnly={true} UserContext={ViewUserContext} />
+        <section>
+          <ProfileButton isInEditMode={false} canEdit={canEdit} onClick={goToEdit} pageId={id} />
+        </section>
+      </div>
     </ViewUserContext.Provider>
   );
 };
