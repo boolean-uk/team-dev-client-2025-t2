@@ -32,11 +32,9 @@ const AuthProvider = ({ children }) => {
       navigate('/login');
       return res;
     }
-    console.log(location);
     localStorage.setItem('token', res.data.token);
-
-    setToken(res.token);
-    navigate(location.pathname || '/');
+    setToken(res.data.token);
+    navigate('/');
     return res;
   };
 
