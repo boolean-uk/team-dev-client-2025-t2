@@ -21,7 +21,10 @@ async function addPost(content) {
   const res = await post('posts', { content }, true);
   return res.data.posts;
 }
-
+async function getCohort(id) {
+  const res = await get(`cohorts/${id}`, null);
+  return res.data.cohort;
+}
 async function post(endpoint, data, auth = true) {
   return await request('POST', endpoint, data, auth);
 }
@@ -56,4 +59,4 @@ async function request(method, endpoint, data, auth = true) {
   return response.json();
 }
 
-export { login, getPosts, register, createProfile, addPost };
+export { login, getPosts, register, createProfile, addPost, getCohort };
