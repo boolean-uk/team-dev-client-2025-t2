@@ -1,6 +1,6 @@
 import { createContext, useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
-import { getUser } from '../../service/apiClient';
+import { useParams, useNavigate } from 'react-router-dom';
+import { getUser, updateUser } from '../../service/apiClient';
 import { ProfileButton } from '../../components/profileButton';
 import Profile from '../../components/profile';
 import { getId } from '../../service/tokenService';
@@ -11,7 +11,8 @@ const EditProfile = () => {
   const { id } = useParams();
   const [user, setUser] = useState(null);
   const [updatedUser, setUpdatedUser] = useState({});
-  const [canEdit, setCanEdit] = useState(false);
+  const [canEdit, setCanEdit] = useState(true);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchUser = async () => {
@@ -24,13 +25,19 @@ const EditProfile = () => {
     };
 
     fetchUser();
-    getId() === id ? setCanEdit(true) : setCanEdit(false);
-  }, [id]);
+    getId() === Number(id) ? setCanEdit(true) : setCanEdit(false);
+  }, []);
+
+  useEffect(() => {
+    if (!canEdit) {
+      navigate(`/profile/${id}`);
+    }
+  }, [canEdit]);
 
   const submit = async (e) => {
     e.preventDefault();
     try {
-      // await updateUser(id, updatedUser);
+      await updateUser(id, updatedUser);
       console.log(updatedUser);
     } catch (error) {
       console.error('Error updating user:', error);

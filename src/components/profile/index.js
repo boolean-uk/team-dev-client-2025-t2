@@ -98,7 +98,7 @@ const Profile = ({ readOnly, UserContext }) => {
                       readOnly={readOnly}
                     />
                     <TextInput
-                      value={updatedUser ? updatedUser.cohortEndDate || 'N/A' : 'N/A'}
+                      value={updatedUser ? updatedUser.cohortEndDate : 'N/A'}
                       onChange={onChange}
                       name="cohortEndDate"
                       label="Cohort End Date"
