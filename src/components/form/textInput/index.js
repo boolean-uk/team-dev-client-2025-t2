@@ -45,6 +45,7 @@ const TextInput = ({
             e.preventDefault();
             setShowpassword(!showpassword);
           }}
+          type="button"
         >
           <EyeLogo />
         </button>
