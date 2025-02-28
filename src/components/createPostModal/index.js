@@ -2,6 +2,7 @@ import { useState } from 'react';
 import useModal from '../../hooks/useModal';
 import './style.css';
 import Button from '../button';
+import { addPost } from '../../service/apiClient';
 
 const CreatePostModal = () => {
   // Use the useModal hook to get the closeModal function so we can close the modal on user interaction
@@ -16,7 +17,9 @@ const CreatePostModal = () => {
 
   const onSubmit = () => {
     setMessage('Submit button was clicked! Closing modal in 2 seconds...');
-
+    console.log(text);
+    // post to api
+    addPost(text);
     setTimeout(() => {
       setMessage(null);
       closeModal();
