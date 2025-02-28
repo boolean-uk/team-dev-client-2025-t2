@@ -47,6 +47,7 @@ const AuthProvider = ({ children }) => {
     const res = await register(email, password);
     if (res.status === 'success') {
       const loginRes = await login(email, password);
+      localStorage.setItem('token', loginRes.data.token);
       setToken(loginRes.data.token);
       navigate('/verification');
     }

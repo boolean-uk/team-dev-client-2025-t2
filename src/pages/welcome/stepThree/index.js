@@ -16,12 +16,7 @@ const StepThree = ({ data, setData }) => {
             name="specialism"
             label={'Specialism'}
           />
-          <TextInput
-            onChange={setData}
-            value={`Cohort ${data.cohortId}`}
-            name="cohort"
-            label={'Cohort'}
-          />
+          <TextInput onChange={setData} value={data.cohortId} name="cohort" label={'Cohort'} />
           <TextInput
             onChange={setData}
             value={data.startDate}
