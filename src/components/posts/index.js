@@ -15,7 +15,6 @@ const Posts = ({ searchVal }) => {
       const fullName = `${post.author.firstName} ${post.author.lastName}`.toLowerCase();
       const content = post.content.toLowerCase();
       const searchTerm = searchVal;
-      console.log(filteredPosts);
       return fullName.includes(searchTerm) || content.includes(searchTerm);
     });
     setFilteredPosts(filtered);
