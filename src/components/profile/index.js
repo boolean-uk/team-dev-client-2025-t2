@@ -44,6 +44,7 @@ const Profile = ({ readOnly, UserContext }) => {
                   name="firstName"
                   label="First Name"
                   readOnly={readOnly}
+                  require={true}
                 />
                 <TextInput
                   value={updatedUser ? updatedUser.lastName || user.lastName : user.lastName}
@@ -51,6 +52,7 @@ const Profile = ({ readOnly, UserContext }) => {
                   name="lastName"
                   label="Last Name"
                   readOnly={readOnly}
+                  require={true}
                 />
                 <TextInput
                   value={
@@ -62,6 +64,7 @@ const Profile = ({ readOnly, UserContext }) => {
                   name="username"
                   label="Username"
                   readOnly={readOnly}
+                  require={true}
                 />
                 <TextInput
                   value={updatedUser ? updatedUser.githubUrl || user.githubUrl : user.githubUrl}
@@ -69,6 +72,7 @@ const Profile = ({ readOnly, UserContext }) => {
                   name="githubUrl"
                   label="GitHub Username"
                   readOnly={readOnly}
+                  require={true}
                 />
               </section>
 
@@ -80,6 +84,7 @@ const Profile = ({ readOnly, UserContext }) => {
                   name="role"
                   label="Role"
                   readOnly={readOnly}
+                  require={true}
                 />
                 <TextInput
                   value={updatedUser ? updatedUser.specialism || 'N/A' : 'N/A'}
@@ -87,6 +92,7 @@ const Profile = ({ readOnly, UserContext }) => {
                   name="specialism"
                   label="Specialism"
                   readOnly={readOnly}
+                  require={true}
                 />
                 {user.role === 'STUDENT' ? (
                   <>
@@ -96,6 +102,7 @@ const Profile = ({ readOnly, UserContext }) => {
                       name="cohortStartDate"
                       label="Cohort Start Date"
                       readOnly={readOnly}
+                      require={true}
                     />
                     <TextInput
                       value={updatedUser ? updatedUser.cohortEndDate : 'N/A'}
@@ -103,6 +110,7 @@ const Profile = ({ readOnly, UserContext }) => {
                       name="cohortEndDate"
                       label="Cohort End Date"
                       readOnly={readOnly}
+                      require={true}
                     />
                   </>
                 ) : (
@@ -112,6 +120,7 @@ const Profile = ({ readOnly, UserContext }) => {
                     name="jobTitle"
                     label="Job Title"
                     readOnly={readOnly}
+                    require={true}
                   />
                 )}
               </section>
@@ -123,6 +132,7 @@ const Profile = ({ readOnly, UserContext }) => {
                   name="email"
                   label="Email"
                   readOnly={readOnly}
+                  require={true}
                 />
                 <TextInput
                   value={updatedUser ? updatedUser.mobile || 'N/A' : 'N/A'}
@@ -130,6 +140,7 @@ const Profile = ({ readOnly, UserContext }) => {
                   name="mobile"
                   label="Mobile"
                   readOnly={readOnly}
+                  require={true}
                 />
                 <TextInput
                   value={updatedUser ? updatedUser.password || '********' : '********'}
@@ -137,6 +148,7 @@ const Profile = ({ readOnly, UserContext }) => {
                   name="password"
                   label="Password"
                   readOnly={readOnly}
+                  require={true}
                 />
               </section>
               <section>
@@ -151,6 +163,7 @@ const Profile = ({ readOnly, UserContext }) => {
                   name="biography"
                   label="Biography"
                   readOnly={readOnly}
+                  required={true}
                 />
               </section>
             </Form>

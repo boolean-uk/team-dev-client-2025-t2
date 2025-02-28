@@ -4,6 +4,7 @@ import { getUser, updateUser } from '../../service/apiClient';
 import { ProfileButton } from '../../components/profileButton';
 import Profile from '../../components/profile';
 import { getId } from '../../service/tokenService';
+import { validateUpdateUser } from '../../service/inputValidationService';
 
 export const UserContext = createContext();
 
@@ -13,7 +14,7 @@ const EditProfile = () => {
   const [updatedUser, setUpdatedUser] = useState({});
   const [canEdit, setCanEdit] = useState(true);
   const navigate = useNavigate();
-
+  const [errorMsg, setErrorMsg] = useState('');
   useEffect(() => {
     const fetchUser = async () => {
       try {
@@ -34,16 +35,28 @@ const EditProfile = () => {
     }
   }, [canEdit]);
 
+  useEffect(() => {
+    const validInput = validateUpdateUser(updatedUser);
+    if (!validInput.isValid) {
+      setErrorMsg(validInput.message);
+    }
+  }, [updatedUser]);
+
   const submit = async (e) => {
     e.preventDefault();
-    try {
-      await updateUser(id, updatedUser);
-      console.log(updatedUser);
-    } catch (error) {
-      console.error('Error updating user:', error);
+    const validInput = validateUpdateUser(updatedUser);
+    if (!validInput.isValid) {
+      return;
+    }
+    if (Object.keys(updatedUser).length > 0) {
+      try {
+        await updateUser(id, updatedUser);
+        console.log(updatedUser);
+      } catch (error) {
+        console.error('Error updating user:', error);
+      }
     }
   };
-
   const onChange = (e) => {
     const { name, value } = e.target;
     setUpdatedUser((prevUpdatedUser) => ({
@@ -56,6 +69,7 @@ const EditProfile = () => {
     <UserContext.Provider value={{ user, updatedUser, onChange, submit }}>
       <div className="profile-button-group">
         <Profile readOnly={false} UserContext={UserContext} />
+        <p className="input-invalid">{errorMsg}</p>
         <section>
           <ProfileButton isInEditMode={true} canEdit={canEdit} onClick={submit} pageId={id} />
         </section>
