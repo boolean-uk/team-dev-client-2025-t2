@@ -14,3 +14,7 @@
 .ReactModal__Html--open {
   overflow: hidden;
 }
+
+.profile-button-group > section {
+  padding-left: 400px;
+}

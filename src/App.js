@@ -8,7 +8,8 @@ import Verification from './pages/verification';
 import { AuthProvider, ProtectedRoute } from './context/auth';
 import { ModalProvider } from './context/modal';
 import Welcome from './pages/welcome';
-
+import ViewProfile from './pages/profileView';
+import EditProfile from './pages/profileEdit';
 const App = () => {
   return (
     <>
@@ -28,6 +29,24 @@ const App = () => {
                 </ProtectedRoute>
               }
             />
+            <Route
+              path="profile/:id"
+              element={
+                <ProtectedRoute>
+                  <ViewProfile></ViewProfile>
+                </ProtectedRoute>
+              }
+            />
+
+            <Route
+              path="profile/:id/edit"
+              element={
+                <ProtectedRoute>
+                  <EditProfile></EditProfile>
+                </ProtectedRoute>
+              }
+            />
+
             <Route
               path="welcome"
               element={

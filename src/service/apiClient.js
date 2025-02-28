@@ -25,6 +25,15 @@ async function getCohort(id) {
   const res = await get(`cohorts/${id}`, null);
   return res.data.cohort;
 }
+
+async function getUser(id) {
+  return await get(`users/${id}`);
+}
+
+async function updateUser(id, data) {
+  return await patch(`users/${id}`, data);
+}
+
 async function post(endpoint, data, auth = true) {
   return await request('POST', endpoint, data, auth);
 }
@@ -59,4 +68,4 @@ async function request(method, endpoint, data, auth = true) {
   return response.json();
 }
 
-export { login, getPosts, register, createProfile, addPost, getCohort };
+export { login, getPosts, register, createProfile, addPost, getCohort, getUser, updateUser };

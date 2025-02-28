@@ -8,10 +8,10 @@ const TextInput = ({
   label,
   icon,
   require = false,
-  type = 'text'
+  type = 'text',
+  readOnly = false
 }) => {
   const [input, setInput] = useState('');
-  // const [isValidInput, setIsValidInput] = useState(true);
   const [showpassword, setShowpassword] = useState(false);
   // form is valid if has a text value or field is optional
   // const [isValid, setIsValid] = useState(!!value || !require);
@@ -24,12 +24,21 @@ const TextInput = ({
           name={name}
           value={value}
           required={require}
+          readOnly={readOnly}
           onChange={(e) => {
             onChange(e);
             setInput(e.target.value);
           }}
         />
-        {showpassword && <input type="text" name={name} value={input} className="passwordreveal" />}
+        {showpassword && (
+          <input
+            type="text"
+            name={name}
+            value={input}
+            className="passwordreveal"
+            readOnly={readOnly}
+          />
+        )}
         <button
           className={`showpasswordbutton formbutton ${showpassword === true && '__faded'}`}
           onClick={(e) => {
@@ -51,6 +60,7 @@ const TextInput = ({
           name={name}
           value={value}
           required={require}
+          readOnly={readOnly}
           onChange={onChange}
           className={icon && 'input-has-icon'}
         />
